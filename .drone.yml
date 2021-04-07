@@ -1,0 +1,39 @@
+kind: pipeline
+name: main
+
+steps:
+- name: install
+  image: node:13
+  commands:
+  - npm install
+
+- name: build
+  image: node:13
+  commands:
+  - npm build
+  depends_on:
+  - install
+
+- name: deploy-prod
+  image: node:13
+  commands:
+  - npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+  - npm publish
+  - git remote set-url origin https://dpr00f:$GITHUB_TOKEN@github.com/DPr00f/littless-adapter-vercel.git
+  - git add .
+  - git stash
+  - npm version patch -m "Bumping version %s [ci skip]"
+  - git push origin HEAD:main
+  environment:
+    NPM_TOKEN:
+      from_secret: npmtoken
+    GITHUB_TOKEN:
+      from_secret: githubtoken
+  when:
+    branch:
+      include: [ main ]
+    event:
+      exclude:
+      - pull_request
+  depends_on:
+  - build

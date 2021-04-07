@@ -1,0 +1,22 @@
+{
+  "name": "littless-adapter-vercel",
+  "version": "1.0.1",
+  "description": "Littless adapter for vercel",
+  "main": "lib/index.js",
+  "types": "lib",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "keywords": [
+    "littless",
+    "vercel"
+  ],
+  "author": "João Lopes (https://github.com/dpr00f)",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.37"
+  }
+}
