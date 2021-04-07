@@ -1,6 +1,6 @@
 {
   "name": "littless-adapter-vercel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Littless adapter for vercel",
   "main": "lib/index.js",
   "types": "lib",
